@@ -6,7 +6,7 @@
 /*   By: skvackov <skvackov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:55:53 by skvackov          #+#    #+#             */
-/*   Updated: 2024/10/04 15:48:50 by skvackov         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:34:49 by skvackov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static int	translprint(char *totranslate)
 		counter++;
 	}
 	chartoprint = (char)asciifirst;
-	printf("%c", chartoprint);
-	return(1);
+	write(1, &chartoprint, 1);
+	return (1);
 }
 
 static void	sigusr_handler(int sig)
@@ -56,12 +56,9 @@ static void	sigusr_handler(int sig)
 	if (count == 8)
 	{
 		g_getbit[count] = '\0';
-		if (strcmp(g_getbit, "00000000") == 0)
-		{
-			exit(0);
-		}
-		count = 0;
 		translprint(g_getbit);
+		count = 0;
+		ft_memset(g_getbit, '0', 8);
 	}
 }
 
@@ -70,7 +67,7 @@ int	main(void)
 	int	pid;
 
 	pid = getpid();
-	printf("process ID: %d\n", pid);
+	ft_printf("process ID: %d\n", pid);
 	signal(SIGUSR1, sigusr_handler);
 	signal(SIGUSR2, sigusr_handler);
 	while (1)

@@ -6,14 +6,14 @@
 /*   By: skvackov <skvackov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:55:50 by skvackov          #+#    #+#             */
-/*   Updated: 2024/10/04 15:59:24 by skvackov         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:34:32 by skvackov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
-#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 static char	*plzencrypt(char message)
 {
@@ -46,7 +46,7 @@ static void	plzsend(int pid, char *message)
 		{
 			if (kill(pid, SIGUSR1) == -1)
 			{
-				printf("ERROR sending sigusr1");
+				ft_printf("ERROR sending sigusr1");
 				exit(1);
 			}
 		}
@@ -54,28 +54,12 @@ static void	plzsend(int pid, char *message)
 		{
 			if (kill(pid, SIGUSR2) == -1)
 			{
-				printf("ERROR sending sigusr2");
+				ft_printf("ERROR sending sigusr2");
 				exit(1);
 			}
 		}
 		count++;
-		usleep(10000);
-	}
-}
-
-static void	killsignals(int pid)
-{
-	int	oki;
-
-	oki = 0;
-	while (oki < 8)
-	{
-		if (kill(pid, SIGUSR2) == -1)
-		{
-			printf("ERROR sending sigusr2");
-			exit(1);
-		}
-		oki++;
+		usleep(300);
 	}
 }
 
@@ -85,22 +69,23 @@ int	main(int argc, char **argv)
 	char	*themessage;
 	int		count;
 
-	pid = atoi(argv[1]);
 	count = 0;
-	if (argc != 3 || pid <= 0)
+	if (argc != 3)
 	{
-		printf("Error wrong PID or wrong number of arguments");
+		ft_printf("Wrong number of arguments");
 		return (1);
 	}
-	else
+	pid = ft_atoi(argv[1]);
+	if (pid <= 0)
 	{
-		while (argv[2][count] != '\0')
-		{
-			themessage = plzencrypt(argv[2][count]);
-			plzsend(pid, themessage);
-			count++;
-		}
-		killsignals(pid);
+		ft_printf("Please check PID");
+		return (1);
+	}
+	while (argv[2][count] != '\0')
+	{
+		themessage = plzencrypt(argv[2][count]);
+		plzsend(pid, themessage);
+		count++;
 	}
 	return (0);
 }
