@@ -6,15 +6,11 @@
 /*   By: skvackov <skvackov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:55:53 by skvackov          #+#    #+#             */
-/*   Updated: 2024/10/08 15:34:49 by skvackov         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:02:53 by skvackov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+#include "minitalk.h"
 
 char		g_getbit[9] = "00000000";
 

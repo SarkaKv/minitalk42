@@ -6,14 +6,11 @@
 /*   By: skvackov <skvackov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:55:50 by skvackov          #+#    #+#             */
-/*   Updated: 2024/10/08 15:34:32 by skvackov         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:02:41 by skvackov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "minitalk.h"
 
 static char	*plzencrypt(char message)
 {
