@@ -32,7 +32,7 @@ $(NAME_SERVER): $(SRC_SERVER) $(LIBFT) $(PRINTF)
 
 clean:
 	@echo "Cleaning..."
-	@rm -f $(OBJ_CLIENT) $(OBJ_SERVER)
+	@rm -f $(NAME_CLIENT) $(NAME_SERVER)
 	@$(MAKE) -C ./ft_printf/libft clean
 	@$(MAKE) -C ./ft_printf/ clean
 
